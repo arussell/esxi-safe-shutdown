@@ -33,20 +33,20 @@
 ### Remember: ESXi runs sh not bash, so don't do anything fancy that needs bash or it won't work
 
 ## Get a list of all VMs that do not inclue "ups" in the name and loop through them
-vim-cmd vmsvc/getallvms --help | grep vmx | grep -v ups | awk '{print $1}' | grep -v - | while read line; do
+vim-cmd vmsvc/getallvms --help | grep vmx | grep -v ups | awk '{print $1}' | grep -v - | while read vm; do
   # Get the current VM's name
-  vmname=`vim-cmd vmsvc/get.summary 7 | grep "name =" | awk '{print $3}' | sed 's/[\",]//g;'`
+  vmname=`vim-cmd vmsvc/get.summary $vm | grep "name =" | awk '{print $3}' | sed 's/[\",]//g;'`
   echo -ne "Shutting down $vmname"
   # Shutdown the VM
-  vim-cmd vmsvc/power.shutdown $vm
+  vim-cmd vmsvc/power.shutdown $vm >/dev/null 2> /dev/null
   # Ensure machine shuts down so we don't kill the host before it's had a chance to finish shutting down
   while vim-cmd vmsvc/power.getstate $vm | tail -1 | grep 'on' >/dev/null ; do
     # If it's still on, come back and check again in 1 second
     echo -ne "."
     sleep 1
   done
-  # It's shut down
-  echo "done!"
+  # It's shut down (or was already powered off)
+  echo " done!"
   # Move onto the next VM, if any
 done
 # All VMs shutdown except the UPS VM, so shutdown host
