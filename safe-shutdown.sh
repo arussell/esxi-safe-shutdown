@@ -36,19 +36,34 @@
 vim-cmd vmsvc/getallvms --help | grep vmx | grep -v ups | awk '{print $1}' | grep -v - | while read vm; do
   # Get the current VM's name
   vmname=`vim-cmd vmsvc/get.summary $vm | grep "name =" | awk '{print $3}' | sed 's/[\",]//g;'`
-  echo -ne "Shutting down $vmname"
-  # Shutdown the VM
-  vim-cmd vmsvc/power.shutdown $vm >/dev/null 2> /dev/null
-  # Ensure machine shuts down so we don't kill the host before it's had a chance to finish shutting down
-  while vim-cmd vmsvc/power.getstate $vm | tail -1 | grep 'on' >/dev/null ; do
-    # If it's still on, come back and check again in 1 second
-    echo -ne "."
-    sleep 1
-  done
-  # It's shut down (or was already powered off)
-  echo " done!"
-  # Move onto the next VM, if any
+
+  # Only attempt to shut down the current VM if it's powered on, this speeds up the shutdown process
+  if vim-cmd vmsvc/power.getstate $vm | tail -1 | grep 'on' >/dev/null ; then
+    # Check if VMware Tools are installed
+    if vim-cmd vmsvc/get.summary $vm | grep "guestToolsRunning" >/dev/null ; then
+      # If they are, shutdown the guest cleanly
+      echo -ne "Shutting down $vmname "
+      vim-cmd vmsvc/power.shutdown $vm >/dev/null 2> /dev/null
+    else
+      # If they're not, the best we can do is power off the VM
+      echo -ne "Powering off $vmname "
+      vim-cmd vmsvc/power.off $vm >/dev/null 2> /dev/null
+    fi
+    
+    # Ensure machine shuts down so we don't kill the host before it's had a chance to finish shutting down
+    while vim-cmd vmsvc/power.getstate $vm | tail -1 | grep 'on' >/dev/null ; do
+      # If it's still on, come back and check again in 1 second
+      echo -ne "."
+      sleep 1
+    done
+    # It's shut down (or was already powered off)
+    echo " done!"
+    # Move onto the next VM, if any
+  else
+    echo "Skipping $vmname ... already powered off!"
+  fi
 done
+
 # All VMs shutdown except the UPS VM, so shutdown host
 echo "Shutting down ESXi host `hostname`..."
 poweroff
