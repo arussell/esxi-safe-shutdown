@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="esxi-safe-shutdown : ESXi safe shutdown script" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>esxi-safe-shutdown</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/arussell/esxi-safe-shutdown">View on GitHub</a>
+
+          <h1 id="project_title">esxi-safe-shutdown</h1>
+          <h2 id="project_tagline">ESXi safe shutdown script</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/arussell/esxi-safe-shutdown/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/arussell/esxi-safe-shutdown/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a name="what-is-it" class="anchor" href="#what-is-it"><span class="octicon octicon-link"></span></a>What is it?</h3>
+
+<p>A tool for VMware ESXi servers to safely shutdown all running VMs (even ones that don't have VMware Tools installed), before powering off the ESXi host.</p>
+
+<h3>
+<a name="where-will-it-work" class="anchor" href="#where-will-it-work"><span class="octicon octicon-link"></span></a>Where will it work?</h3>
+
+<p>I've tested it with ESXi 5.1, it'll probably work with 5.0 as well but I haven't tried that. I don't think it'll work 
+on 4.x though. Let me know how you get on!</p>
+
+<h3>
+<a name="author-and-contributors" class="anchor" href="#author-and-contributors"><span class="octicon octicon-link"></span></a>Author and Contributors</h3>
+
+<p>Aaron B. Russell (<a href="https://github.com/arussell" class="user-mention">@arussell</a>)</p>
+
+<h3>
+<a name="reporting-problems" class="anchor" href="#reporting-problems"><span class="octicon octicon-link"></span></a>Reporting problems</h3>
+
+<p>Use the issue tracker. Pull requests are welcome, though please remember that ESXi doesn't run <code>bash</code> so ensure your code is compatible with basic <code>sh</code>.</p>
+
+<h3>
+<a name="inspired-by" class="anchor" href="#inspired-by"><span class="octicon octicon-link"></span></a>Inspired by</h3>
+
+<p><a href="http://thehelpfulhacker.net/2012/11/02/graceful-ups-shutdowns-for-your-esxi-server-with-centos/">http://thehelpfulhacker.net/2012/11/02/graceful-ups-shutdowns-for-your-esxi-server-with-centos/</a></p>
+
+<h3>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h3>
+
+<p>Copyright (c) 2013 Aaron B. Russell <a href="mailto:aaron@unadopted.co.uk">aaron@unadopted.co.uk</a>
+All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+<li>Neither the names of the Aaron B. Russell, Rocket Dog Creative, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+</ul><p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL AARON B. RUSSELL OR ROCKET DOG CREATIVE BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">esxi-safe-shutdown maintained by <a href="https://github.com/arussell">arussell</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
